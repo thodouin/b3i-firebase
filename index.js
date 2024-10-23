@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import 'dotenv/config';
 import { getFirestore, collection, getDocs, Firestore } from 'firebase/firestore';
 
 console.log('Start du programme v1 !');
@@ -25,4 +24,9 @@ async function getFactures(db) {
 
 const factures = await getFactures(db)
 
-console.log(factures);
+factures.forEach(facture =>{  
+  if (isNaN(facture.totalTTC) && parseFloat(facture.totalTTC > -10))
+  {
+  console.log(facture.id)
+  }
+});
